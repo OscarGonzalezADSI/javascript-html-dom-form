@@ -1,0 +1,164 @@
+* { 
+    padding: 0px;
+    margin: 0px;
+}
+
+:root {
+  --main-h2-text-color:#ffffff;
+  --main-legend-text-color:#ffffff;
+  --main-label-text-color:#9999ff;
+  --main-bg-color: #9999ff;
+  --main-bgd-color: #9999ff99;
+  --main-border-color:2px #9999ff solid;
+}
+
+h2{
+    margin-top:16px;
+    margin-bottom:16px;
+    color:var(--main-h2-text-color);
+    background-color:var(--main-bg-color);
+    border-radius:5px;
+    padding:5px;
+}
+
+fieldset {
+    border:0px;
+}
+
+fieldset.checkbox {
+    margin:19px;
+    border:var(--main-border-color);
+    border-radius:5px;
+}
+
+fieldset.user,
+fieldset.checkbox,
+fieldset.submit
+{ 
+    padding:0px;
+    margin-top: 20px;
+    padding:16px;
+}
+
+fieldset.user fieldset{
+    padding-left:0px;
+    padding-right:15px;
+    border-radius:5px;
+}
+
+fieldset.user fieldset label{
+    margin-top:16px;
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    color:var(--main-label-text-color);
+}
+
+fieldset.user input[type=text],
+fieldset.user input[type=email],
+fieldset.user input[type=password],
+select, 
+textarea {
+    width:93%;
+    font-size: 20px;
+    padding:16px;
+    border:2px #00000055 solid;
+    border-radius:5px;
+    resize: vertical;
+    outline: none;
+}
+
+fieldset.user input:focus,
+select:focus,
+textarea:focus {
+    border:var(--main-border-color);
+}
+
+fieldset legend {
+    border-radius:5px;
+    padding:5px;
+    background-color:var(--main-bg-color);
+    color:var(--main-h2-text-color);
+    font-size:20px;
+}
+
+fieldset.checkbox label { 
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+fieldset.checkbox input[type=checkbox] { 
+    visibility: hidden; 
+}
+
+fieldset.checkbox span.geekmark { 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color:var(--main-bg-color);
+}
+
+fieldset.checkbox label:hover input ~ .geekmark {
+    background-color:var(--main-bg-color);
+} 
+
+fieldset.checkbox input:active ~ .geekmark { 
+    background-color:var(--main-bg-color);
+}
+
+fieldset.checkbox input:checked ~ .geekmark { 
+    background-color:var(--main-bg-color);
+}
+
+fieldset.checkbox input:checked ~ .geekmark:after {
+    display: block;
+} 
+
+fieldset.checkbox .geekmark:after {
+    content: ""; 
+    position: absolute; 
+    display: none;
+    left: 8px;
+    bottom: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg); 
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg); 
+}
+
+fieldset.submit {
+    margin-bottom:36px;
+}
+
+fieldset.submit input[type=submit] {
+    background-color:var(--main-bg-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    font-size: 20px;
+}
+
+fieldset.submit input[type=submit]:hover {
+    background-color:var(--main-bgd-color);
+}
+
+@media screen and (max-width: 600px) {
+    .col-25,
+    .col-75,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
