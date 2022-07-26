@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./css/main.css" >
 <script src="./js/main.js"></script>
 </head>
@@ -15,14 +17,14 @@
   <fieldset class="checkbox">
     <legend>Deseo ser...</legend>
     <fieldset>
-      <label>Arrendador.
-        <input type="checkbox" checked="checked">
+      <label for="rolArrendador">Arrendador.
+        <input id="rolArrendador" name="rolArrendador" type="checkbox" checked="checked">
         <span class="geekmark"></span>
       </label>
     </fieldset>
     <fieldset>
-      <label>Arrendatario.
-        <input type="checkbox" checked="checked">
+      <label for="rolArrendatario">Arrendatario.
+        <input id="rolArrendatario" name="rolArrendatario" type="checkbox" checked="checked">
         <span class="geekmark"></span>
       </label>
     </fieldset>
@@ -32,15 +34,15 @@
   <fieldset class="checkbox">
     <legend>Políticas:</legend>
     <fieldset>
-      <label>Acepto los términos y condiciones.
-        <input type="checkbox">
+      <label for="aceptaPoliticas">Acepto los términos y condiciones.
+        <input id="aceptaPoliticas" name="aceptaPoliticas"  type="checkbox">
         <span class="geekmark"></span>
       </label>
     </fieldset>
   </fieldset>
   
   <fieldset class="submit">
-    <input type="submit" value="Registrarme">
+    <input type="submit" id="submit" value="Registrarme">
   </fieldset>
   
 </form>

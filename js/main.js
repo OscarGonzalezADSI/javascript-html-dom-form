@@ -16,6 +16,7 @@ class NewForm
     this.input.setAttribute('name', name);
     this.input.setAttribute('type', type);
     this.input.setAttribute('placeholder', placeholder);
+    this.input.setAttribute('required', "");
   }
   
   appendChild()
@@ -31,7 +32,6 @@ class NewForm
 function createField(nodes, index)
 {
   const node = nodes[index];
-  const querySelector = node.querySelector;
   const label = node.label;
   const id = node.id;
   const name = node.name;
@@ -39,25 +39,123 @@ function createField(nodes, index)
   const placeholder = node.placeholder;
 
   const myform = new NewForm();
-  myform.querySelector(querySelector);
+  myform.querySelector(node.myQuerySelector);
   myform.inputSetAttribute(label, id, name, type, placeholder);
   myform.appendChild();
 }
 
 function createFields(nodes)
 {
-  for(let i=0; nodes.length>0; i++)
+  for(let i=0; nodes.length>i; i++)
   {
     createField(nodes, i);
   }
 }
 
 
-document.addEventListener('DOMContentLoaded', ()=>{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function condicionesInciales()
+{
+	document.getElementById("submit").disabled = true;
+	soloMinusculas();
+}
+
+function soloMinusculas()
+{
+    const nombres = document.getElementById("nombres");
+    const apellidos = document.getElementById("apellidos");
+    const contrasena = document.getElementById("contrasena");
+    const contrasenaP = document.getElementById("contrasenaP");
+
+    nombres.addEventListener("keypress", write);
+    apellidos.addEventListener("keypress", write);
+    contrasena.addEventListener("keypress", write2);
+    contrasenaP.addEventListener("keypress", write2);
+}
+
+function write()
+{
+	checkField(event);
+}
+
+function write2()
+{
+	setTimeout(function(){
+		
+	const response = false;	
+	if(aceptacionPoliticas(response) == true && compareContrasena() == true)
+	{
+        document.getElementById("submit").disabled = false;
+	}else{
+        document.getElementById("submit").disabled = true;
+	}
+		
+		
+	}, 1000);
+}
+
+function checkField(evt)
+{
+    var charCode = evt.charCode;
+    if(charCode != 0) {
+        if(charCode < 97 || charCode > 122) {
+            evt.preventDefault();
+            alert("Por favor usa sólo letras minúsculas." + "\n" + "charCode: " + charCode + "\n");
+        }
+    }
+}
+
+function compareContrasena()
+{
+	const contrasena = document.getElementById("contrasena");
+	const contrasenaP = document.getElementById("contrasenaP");
+	if(contrasena.value == contrasenaP.value)
+	{
+		contrasena.setAttribute("style", "border:2px #00ff0055 solid;");
+		contrasenaP.setAttribute("style", "border:2px #00ff0055 solid;");
+		return true;
+	}else{
+		contrasena.setAttribute("style", "border:2px #ff000055 solid;");
+		contrasenaP.setAttribute("style", "border:2px #ff000055 solid;");
+		return false;
+	}
+}
+
+function aceptacionPoliticas(response)
+{
+    if(response === false)
+    {
+		return true;
+    }else{
+		return false;
+    }	
+}
+
+document.addEventListener('DOMContentLoaded', (eve)=>{
 
   const nodes = [
     {
-      "querySelector" : "#registro fieldset",
+      "myQuerySelector" : "#registro fieldset",
       "label" : "Nombres:",
       "id" : "nombres",
       "name" : "nombres",
@@ -65,7 +163,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       "placeholder" : "Tus nombres..."
     },
     {
-      "querySelector" : "#registro fieldset",
+      "myQuerySelector" : "#registro fieldset",
       "label" : "Apellidos:",
       "id" : "apellidos",
       "name" : "apellidos",
@@ -73,7 +171,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       "placeholder" : "Tus apellidos..."
     },
     {
-      "querySelector" : "#registro fieldset",
+      "myQuerySelector" : "#registro fieldset",
       "label" : "Correo electrónico:",
       "id" : "correo",
       "name" : "correo",
@@ -81,7 +179,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       "placeholder" : "Tu correo electrónico..."
     },
     {
-      "querySelector" : "#registro fieldset",
+      "myQuerySelector" : "#registro fieldset",
       "label" : "Contraseña:",
       "id" : "contrasena",
       "name" : "contrasena",
@@ -89,7 +187,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       "placeholder" : "Contraseña..."
     },
     {
-      "querySelector" : "#registro fieldset",
+      "myQuerySelector" : "#registro fieldset",
       "label" : "Confirmación contraseña:",
       "id" : "contrasenaP",
       "name" : "contrasenaP",
@@ -98,5 +196,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
     },
   ];
 
-  createFields(nodes);
+createFields(nodes);
+
+condicionesInciales();
+
+const aceptaPoliticas = document.getElementById("aceptaPoliticas");
+
+const response = false;
+
+aceptaPoliticas.addEventListener("click",()=>{
+	if(aceptacionPoliticas(response) == true && compareContrasena() == true)
+	{
+        document.getElementById("submit").disabled = false;
+	}else{
+        document.getElementById("submit").disabled = true;
+	}
+});
 });
